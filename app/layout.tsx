@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
-import { DarkModeToggle } from "@/app/_components/dark-mode-toggle";
 
 export const metadata: Metadata = {
   title: "image-client",
@@ -24,14 +21,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <main>
-              <SidebarTrigger className="fixed" />
-              {children}
-              <DarkModeToggle />
-            </main>
-          </SidebarProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>
