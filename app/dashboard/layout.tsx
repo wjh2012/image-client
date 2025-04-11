@@ -9,14 +9,14 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="w-full h-full">
-      <SidebarProvider>
-        <AppSidebar />
-        <main>
-          <SidebarTrigger className="fixed" />
-          {children}
-          <DarkModeToggle />
-        </main>
-      </SidebarProvider>
+      {/*<SidebarProvider>*/}
+      {/*  <AppSidebar />*/}
+      <main>
+        {/*<SidebarTrigger className="fixed" />*/}
+        {children}
+        <DarkModeToggle />
+      </main>
+      {/*</SidebarProvider>*/}
     </div>
   );
 };

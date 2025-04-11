@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { NavigatorBar } from "@/components/navigator-bar";
 
 export const metadata: Metadata = {
   title: "image-client",
@@ -21,7 +22,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <NavigatorBar />
+          <main className="flex-1 w-full px-4 py-6">{children}</main>
         </ThemeProvider>
       </body>
     </html>
