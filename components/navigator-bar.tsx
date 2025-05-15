@@ -27,6 +27,13 @@ export const NavigatorBar = () => {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem>
+          <Link href="/project" legacyBehavior passHref>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              project
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
           <Link href="/login" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
               sign in
