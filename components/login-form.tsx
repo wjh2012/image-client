@@ -12,11 +12,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -36,15 +38,15 @@ export function LoginForm({
       });
 
       if (!response.ok) {
-        throw new Error("회원가입 실패");
+        throw new Error("로그인 실패");
       }
 
       const data = await response.json();
-      console.log("회원가입 성공:", data);
-      window.location.href = "/dashboard";
+      console.log("로그인 성공:", data);
+      await router.push("/dashboard");
     } catch (error) {
       console.error("에러 발생:", error);
-      alert("회원가입에 실패했습니다.");
+      alert("로그인 실패했습니다.");
     }
   };
 
