@@ -36,6 +36,7 @@ export default function MinioMultiImageUploader() {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: form.toString(),
+        credentials: "include",
       });
 
       if (!res.ok) throw new Error("presigned URL 요청 실패");
@@ -63,6 +64,7 @@ export default function MinioMultiImageUploader() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(uploadedImageIds),
+        credentials: "include",
       });
 
       if (!confirmRes.ok) throw new Error("업로드 완료 알림 실패");

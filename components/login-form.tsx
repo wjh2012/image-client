@@ -31,17 +31,14 @@ export function LoginForm({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
+        credentials: "include",
       });
 
-      if (!response.ok) {
-        throw new Error("로그인 실패");
-      }
+      if (!response.ok) throw new Error("로그인 실패");
 
       const data = await response.json();
+
       console.log("로그인 성공:", data);
       await router.push("/dashboard");
     } catch (error) {
