@@ -34,8 +34,11 @@ export default function MinioMultiImageUploader() {
 
       const res = await fetch(`${SPRING_API_BASE}/upload-urls`, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: form.toString(),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          filenames,
+          contentTypes,
+        }),
         credentials: "include",
       });
 
