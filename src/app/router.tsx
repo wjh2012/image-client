@@ -2,6 +2,7 @@ import { QueryClient, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
+import { paths } from "@/config/paths.ts";
 
 const convert = (queryClient: QueryClient) => (m: any) => {
   const { clientLoader, clientAction, default: Component, ...rest } = m;
@@ -16,7 +17,7 @@ const convert = (queryClient: QueryClient) => (m: any) => {
 const createAppRouter = (queryClient: QueryClient) =>
   createBrowserRouter([
     {
-      path: "/",
+      path: paths.home.path,
       lazy: () => import("./routes/landing").then(convert(queryClient)),
     },
     {
