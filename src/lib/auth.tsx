@@ -4,15 +4,13 @@ import { z } from "zod";
 
 import { paths } from "@/config/paths";
 import type { AuthResponse, User } from "@/types/api";
-
-import { api } from "./api-client";
+import { api } from "@/lib/api-client.ts";
 
 // api call definitions for auth (types, schemas, requests):
 // these are not part of features as this is a module shared across features
 
 const getUser = async (): Promise<User> => {
   const response = await api.get("/auth/me");
-
   return response.data;
 };
 
@@ -36,20 +34,13 @@ export const registerInputSchema = z
     firstName: z.string().min(1, "Required"),
     lastName: z.string().min(1, "Required"),
     password: z.string().min(5, "Required"),
+    teamId: z.string().optional(),
+    teamName: z.string().optional(),
   })
-  .and(
-    z
-      .object({
-        teamId: z.string().min(1, "Required"),
-        teamName: z.null().default(null),
-      })
-      .or(
-        z.object({
-          teamName: z.string().min(1, "Required"),
-          teamId: z.null().default(null),
-        }),
-      ),
-  );
+  .refine((data) => Boolean(data.teamId) !== Boolean(data.teamName), {
+    message: "teamId 또는 teamName 중 정확히 하나만 제공해야 합니다.",
+    path: ["teamId"],
+  });
 
 export type RegisterInput = z.infer<typeof registerInputSchema>;
 
