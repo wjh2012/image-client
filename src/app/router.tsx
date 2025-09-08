@@ -45,7 +45,8 @@ const createAppRouter = (queryClient: QueryClient) =>
       children: [
         {
           path: paths.app.dashboard.path,
-          lazy: () => import("./routes/landing").then(convert(queryClient)),
+          lazy: () =>
+            import("./routes/app/dashboard").then(convert(queryClient)),
         },
       ],
     },
