@@ -1,4 +1,5 @@
 import { Outlet } from "react-router";
+import { DashboardLayout } from "@/components/layouts/dashboard-layout.tsx";
 
 export const ErrorBoundary = () => {
   return <div>Something went wrong!</div>;
@@ -6,9 +7,9 @@ export const ErrorBoundary = () => {
 
 const AppRoot = () => {
   return (
-    <div>
+    <DashboardLayout>
       <Outlet />
-    </div>
+    </DashboardLayout>
   );
 };
 
